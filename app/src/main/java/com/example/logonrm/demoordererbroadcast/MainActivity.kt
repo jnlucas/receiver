@@ -31,10 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         val usbReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                if(intent?.action.equals(Intent.ACTION_POWER_CONNECTED)){
-                    tvUsbStatus.text = "cabo conectado"
-                }else{
-                    tvUsbStatus.text = "cabo desconectado"
+
+                when (intent?.action) {
+                    Intent.ACTION_POWER_CONNECTED -> {
+                        tvUsbStatus.text = "cabo conectado"
+                    }
+                    Intent.ACTION_POWER_DISCONNECTED -> {
+                        tvUsbStatus.text = "cabo desconectado"
+                    }
                 }
             }
         }
